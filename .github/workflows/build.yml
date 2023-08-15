@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Building the c-auth app
+    name: Building the bs.c-auth app
     runs-on: ubuntu-latest
     defaults:
       run:
