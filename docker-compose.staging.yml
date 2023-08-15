@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  c-auth:
+    image: mohammadnowresideh1997/c-auth
+    container_name: c-auth
+    ports:
+      - 3005:3005
