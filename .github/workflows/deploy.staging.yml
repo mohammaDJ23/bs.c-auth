@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-push-action:
-    name: Building the images
+    name: Building the image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
