@@ -3,5 +3,6 @@ services:
   c-auth:
     image: mohammadnowresideh1997/c-auth
     container_name: c-auth
+    restart: always
     ports:
       - 3005:3005
