@@ -83,13 +83,13 @@ module.exports = {
     new webpack.DefinePlugin({ __VUE_OPTIONS_API__: true, __VUE_PROD_DEVTOOLS__: true }),
     new ModuleFederationPlugin({
       name: 'auth',
-      filename: 'remoteEntry.js',
+      filename: 'auth.remoteEntry.js',
       exposes: { './AuthApp': './src/main.js' },
       shared: packageJson.dependencies,
     }),
   ],
   output: {
-    publicPath: process.env.PUBLIC_PATH,
+    publicPath: `${process.env.AUTH_APP}/`,
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
     clean: true,
