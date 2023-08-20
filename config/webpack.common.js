@@ -89,7 +89,7 @@ module.exports = {
     }),
   ],
   output: {
-    publicPath: process.env.PUBLIC_PATH,
+    publicPath: `${process.env.AUTH_APP}/`,
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '../dist'),
     clean: true,
