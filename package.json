@@ -7,7 +7,7 @@
     "preview": "vite preview",
     "webpack:start:dev": "webpack serve --config config/webpack.dev.js",
     "webpack:build": "webpack --config config/webpack.prod.js",
-    "start:prod": "serve -p 3005 -s dist",
+    "start:prod": "node server.js",
     "docker:compose:staging:up": "docker-compose -f docker-compose.staging.yml -p c-auth down && docker rmi -f c-auth && docker-compose -f docker-compose.staging.yml -p c-auth --env-file /root/config/c-auth.env.txt up --build -d"
   },
   "dependencies": {
@@ -27,7 +27,6 @@
     "reflect-metadata": "^0.1.13",
     "sass": "^1.64.1",
     "secure-web-storage": "^1.0.2",
-    "serve": "^14.2.0",
     "terser-webpack-plugin": "^5.3.6",
     "unplugin-element-plus": "^0.4.1",
     "validator": "^13.9.0",

@@ -15,4 +15,7 @@ module.exports = merge(commonConfig, {
     }),
   ],
   devServer: { port: 3005, historyApiFallback: true },
+  output: {
+    publicPath: `${process.env.AUTH_APP}/`,
+  },
 });
