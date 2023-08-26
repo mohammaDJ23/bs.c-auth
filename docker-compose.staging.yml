@@ -1,8 +1,8 @@
 version: '3.8'
 services:
-  c-auth:
-    image: mohammadnowresideh1997/c-auth
-    container_name: c-auth
+  c-auth-staging:
+    image: mohammadnowresideh1997/c-auth-staging
+    container_name: c-auth-staging
     restart: always
     ports:
       - 3005:3005
