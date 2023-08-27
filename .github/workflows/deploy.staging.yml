@@ -13,6 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v2.0
+        with:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          PORT: ${{ secrets.STAGING_PORT }}
+          directory: ./
+          file_name: .env
+
       - name: Log in to Docker Hub
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:

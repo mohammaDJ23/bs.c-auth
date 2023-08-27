@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-require('dotenv').config({ path: '/root/config/c-auth-staging.env.txt' });
+require('dotenv').config();
 
 const app = express();
 
