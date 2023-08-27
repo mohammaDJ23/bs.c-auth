@@ -16,8 +16,8 @@ jobs:
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v2.0
         with:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          PORT: ${{ secrets.STAGING_PORT }}
+          envkey_DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          envkey_PORT: ${{ secrets.STAGING_PORT }}
           directory: ./
           file_name: .env
 
