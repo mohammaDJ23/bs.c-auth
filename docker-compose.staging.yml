@@ -5,8 +5,6 @@ services:
     env_file:
       - /root/config/c-auth-staging.env.txt
     container_name: c-auth-staging
-    environment:
-      - PORT=${PORT}
     restart: always
     ports:
       - ${PORT}:${PORT}
