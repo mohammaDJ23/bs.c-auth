@@ -1,11 +1,13 @@
 version: '3.8'
 services:
   c-auth-staging:
-    image: mohammadnowresideh1997/c-auth-staging
+    image: ${DOCKER_USERNAME}/c-auth-staging
+    env_file:
+      - /root/config/c-auth-staging.env.txt
     container_name: c-auth-staging
     restart: always
     ports:
-      - 3005:3005
+      - ${PORT}:${PORT}
     networks:
       - services_app-network
 
