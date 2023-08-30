@@ -2,8 +2,6 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 
-console.log(process.env);
-
 const app = express();
 
 function isFileExist(route) {
