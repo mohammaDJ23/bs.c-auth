@@ -1,10 +1,10 @@
 version: '3.8'
 services:
-  c-auth-staging:
-    image: ${DOCKER_USERNAME}/c-auth-staging
+  c-auth-prod:
+    image: ${DOCKER_USERNAME}/c-auth-prod
     env_file:
-      - /root/config/c-auth-staging.env.txt
-    container_name: c-auth-staging
+      - /root/config/c-auth-prod.env.txt
+    container_name: c-auth-prod
     restart: always
     ports:
       - ${PORT}:${PORT}
