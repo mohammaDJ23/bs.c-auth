@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  c-auth-prod:
+    image: ${DOCKER_USERNAME}/c-auth-prod
+    env_file:
+      - /root/config/c-auth-prod.env.txt
+    container_name: c-auth-prod
+    restart: always
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - services_app-network
+
+networks:
+  services_app-network:
+    external: true
