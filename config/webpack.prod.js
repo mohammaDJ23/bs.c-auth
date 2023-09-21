@@ -1,4 +1,5 @@
 const { merge } = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const webpack = require('webpack');
 const commonConfig = require('./webpack.common');
@@ -9,6 +10,7 @@ module.exports = merge(commonConfig, {
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(process.env),
     }),
+    new HtmlWebpackPlugin({ template: './public/index.html' }),
     new FaviconsWebpackPlugin({
       logo: './public/app-logo-48.png',
       favicons: {
