@@ -1,4 +1,3 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const webpack = require('webpack');
@@ -91,7 +90,6 @@ module.exports = {
     extensions: ['.js', '.jsx', '.vue'],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './public/index.html' }),
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({ __VUE_OPTIONS_API__: true, __VUE_PROD_DEVTOOLS__: true }),
     new ModuleFederationPlugin({
