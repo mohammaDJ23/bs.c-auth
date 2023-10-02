@@ -12,7 +12,7 @@ module.exports = merge(commonConfig, {
     }),
     new HtmlWebpackPlugin({ template: './public/index.html' }),
     new FaviconsWebpackPlugin({
-      logo: './public/app-logo-48.png',
+      logo: './public/app-icon_256.png',
       favicons: {
         path: process.env.AUTH_APP + process.env.AUTH_PUBLIC_PATH + 'assets/',
         icons: {
