@@ -18,6 +18,6 @@ module.exports = merge(commonConfig, {
   ],
   devServer: { port: process.env.PORT, historyApiFallback: true },
   output: {
-    publicPath: `${process.env.AUTH_APP}/`,
+    publicPath: process.env.AUTH_APP + process.env.AUTH_PUBLIC_PATH,
   },
 });

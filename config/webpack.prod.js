@@ -14,7 +14,7 @@ module.exports = merge(commonConfig, {
     new FaviconsWebpackPlugin({
       logo: './public/app-logo-48.png',
       favicons: {
-        path: `${process.env.AUTH_APP}/auth/static/assets/`,
+        path: process.env.AUTH_APP + process.env.AUTH_PUBLIC_PATH + 'assets/',
         icons: {
           android: true,
           appleIcon: true,
@@ -24,6 +24,6 @@ module.exports = merge(commonConfig, {
     }),
   ],
   output: {
-    publicPath: `${process.env.AUTH_APP}/auth/static/`,
+    publicPath: process.env.AUTH_APP + process.env.AUTH_PUBLIC_PATH,
   },
 });
