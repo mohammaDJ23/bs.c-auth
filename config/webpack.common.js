@@ -1,4 +1,4 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const webpack = require('webpack');
 const path = require('path');
@@ -11,6 +11,19 @@ module.exports = {
     hints: false,
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
+  },
+  optimization: {
+    usedExports: true,
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          keep_classnames: true,
+          keep_fnames: true,
+          compress: false,
+        },
+      }),
+    ],
   },
   module: {
     rules: [
@@ -78,7 +91,6 @@ module.exports = {
     extensions: ['.js', '.jsx', '.vue'],
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: './index.html' }),
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({ __VUE_OPTIONS_API__: true, __VUE_PROD_DEVTOOLS__: true }),
     new ModuleFederationPlugin({
