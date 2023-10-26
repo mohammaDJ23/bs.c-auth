@@ -3,7 +3,7 @@
 <script setup>
 import { onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { LocalStorage, pathes } from '../lib';
+import { LocalStorage, pathes, onLoginEvent } from '../lib';
 import { decodeToken } from 'react-jwt';
 
 const route = useRoute();
@@ -25,6 +25,8 @@ onMounted(() => {
       ['oauth_access_token_info', parsedOauthAccessTokenInfo],
     ];
     for (let [key, value] of storableData) LocalStorage.setItem(key, value);
+
+    onLoginEvent();
 
     router.push(pathes.dashboard);
   } else router.push(pathes.login);

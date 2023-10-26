@@ -17,3 +17,11 @@ export function getTokenInfo() {
 export function isUserAuthenticated() {
   return !!getToken();
 }
+
+export function onLoginEvent() {
+  const event = new CustomEvent('on-login', {
+    cancelable: true,
+    detail: getTokenInfo(),
+  });
+  window.dispatchEvent(event);
+}
