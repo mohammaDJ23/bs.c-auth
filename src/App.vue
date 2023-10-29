@@ -1,7 +1,7 @@
 <template>
   <RedirectionProvider>
     <Container>
-      <notifications position="top right" />
+      <notifications position="top center" />
       <router-view></router-view>
     </Container>
   </RedirectionProvider>
