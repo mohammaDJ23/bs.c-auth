@@ -56,11 +56,11 @@ import { useNotification } from '@kyvg/vue3-notification';
 const formRef = ref();
 const form = reactive(new ResetPassword());
 const valid = ref(true);
-const { isApiProcessing, request } = useRequest();
-const { redirect } = useRedirect();
-const { focus } = useFocus();
-const { notify } = useNotification();
-const isFormProcessing = isApiProcessing(ResetPasswordApi);
+const request = useRequest();
+const redirect = useRedirect();
+const focus = useFocus();
+const notification = useNotification();
+const isFormProcessing = request.isApiProcessing(ResetPasswordApi);
 
 onMounted(() => {
   focus('password');
@@ -70,10 +70,10 @@ async function validate(event) {
   event.preventDefault();
   const { valid } = await formRef.value.validate();
   if (valid) {
-    request(new ResetPasswordApi(form)).then(response => {
+    request.build(new ResetPasswordApi(form)).then((response) => {
       form.clearCachedForm();
       formRef.value.reset();
-      notify({ text: 'Your password was changed.', title: 'Success', type: 'success' });
+      notification.notify({ text: 'Your password was changed.', title: 'Success', type: 'success' });
       redirect(pathes.login);
     });
   }
@@ -81,7 +81,7 @@ async function validate(event) {
 
 watch(
   () => form,
-  form => {
+  (form) => {
     form.bindInputsRules();
   },
   { deep: true }
