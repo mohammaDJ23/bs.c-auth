@@ -5,5 +5,5 @@ export function useFocus() {
     if (el) el?.focus();
   }
 
-  return { focus };
+  return focus;
 }

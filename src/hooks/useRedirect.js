@@ -6,5 +6,5 @@ export function useRedirect() {
     router.push(path);
   }
 
-  return { redirect };
+  return redirect;
 }
