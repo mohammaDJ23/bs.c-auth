@@ -59,7 +59,7 @@
 <script setup>
 import { reactive, onMounted, ref } from 'vue';
 import Card from './Card.vue';
-import { LocalStorage, Login, onLoginEvent, pathes } from '../lib';
+import { LocalStorage, Login, pathes } from '../lib';
 import { useFocus, useRequest, useRedirect } from '../hooks';
 import { LoginApi, LoginWithGoogleApi } from '../apis';
 import { decodeToken } from 'react-jwt';
@@ -95,8 +95,6 @@ async function validate(event) {
       ];
 
       for (let [key, value] of storableData) LocalStorage.setItem(key, value);
-
-      onLoginEvent();
 
       redirect(pathes.dashboard);
     });
