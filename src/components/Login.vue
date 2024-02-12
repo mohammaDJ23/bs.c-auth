@@ -11,7 +11,7 @@
         type="email"
         name="email"
         required
-        @update:model-value="value => form.cacheInput('email', value)"
+        @update:model-value="(value) => form.cacheInput('email', value)"
       ></v-text-field>
       <v-text-field
         clearable
@@ -68,10 +68,10 @@ import { isUserAuthenticated } from '../lib';
 const formRef = ref();
 const form = reactive(new Login());
 const valid = reactive(true);
-const { isApiProcessing, request } = useRequest();
-const { redirect } = useRedirect();
-const { focus } = useFocus();
-const isLoginApiProcessing = isApiProcessing(LoginApi);
+const request = useRequest();
+const redirect = useRedirect();
+const focus = useFocus();
+const isLoginApiProcessing = request.isApiProcessing(LoginApi);
 const isFormProcessing = isLoginApiProcessing;
 const isUserLoggedIn = isUserAuthenticated();
 
@@ -83,7 +83,7 @@ async function validate(event) {
   event.preventDefault();
   const { valid } = await formRef.value.validate();
   if (valid) {
-    request(new LoginApi(form)).then(response => {
+    request.build(new LoginApi(form)).then((response) => {
       form.clearCachedForm();
       formRef.value.reset();
 

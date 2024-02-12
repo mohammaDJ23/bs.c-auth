@@ -16,7 +16,7 @@ export function useRequest() {
     return !!currentApiProcessing(requestInstance);
   }
 
-  async function request(requestInstance) {
+  async function build(requestInstance) {
     try {
       if (isCurrentApiProcessing(requestInstance))
         throw new RequestProcessingError('The api is processing please wait.');
@@ -41,5 +41,5 @@ export function useRequest() {
     return computed(() => isCurrentApiProcessing(requestInstance));
   }
 
-  return { request, isApiProcessing };
+  return { build, isApiProcessing };
 }
