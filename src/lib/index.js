@@ -5,3 +5,4 @@ export * from './storage';
 export * from './errors';
 export * from './decorators';
 export * from './authentication';
+export * from './utilFunctions';
