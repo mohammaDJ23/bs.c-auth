@@ -1,31 +1,35 @@
 <template>
-  <Card title="Reset password" :is-loading="isFormProcessing">
+  <Card title="Reset password" :is-loading="isFormProcessing" :card-style="{ 'box-shadow': 'none' }">
     <v-form ref="formRef" v-model="valid" lazy-validation @submit="validate">
-      <v-text-field
-        clearable
-        :disabled="isFormProcessing"
-        label="Password"
-        variant="underlined"
-        v-model="form.password"
-        :rules="form.getInputRules('password')"
-        type="password"
-        name="password"
-        required
-        autocomplete="off"
-      ></v-text-field>
-      <v-text-field
-        clearable
-        :disabled="isFormProcessing"
-        label="Confirmed password"
-        variant="underlined"
-        v-model="form.confirmedPassword"
-        :rules="form.getInputRules('confirmedPassword')"
-        type="password"
-        name="confirmedPassword"
-        required
-        autocomplete="off"
-      ></v-text-field>
-      <div class="d-flex align-center gap-2 flex-wrap mt-3">
+      <div style="opacity: 0; transform: translateX(10px)">
+        <v-text-field
+          clearable
+          :disabled="isFormProcessing"
+          label="Password"
+          variant="underlined"
+          v-model="form.password"
+          :rules="form.getInputRules('password')"
+          type="password"
+          name="password"
+          required
+          autocomplete="off"
+        ></v-text-field>
+      </div>
+      <div style="opacity: 0; transform: translateX(20px)">
+        <v-text-field
+          clearable
+          :disabled="isFormProcessing"
+          label="Confirmed password"
+          variant="underlined"
+          v-model="form.confirmedPassword"
+          :rules="form.getInputRules('confirmedPassword')"
+          type="password"
+          name="confirmedPassword"
+          required
+          autocomplete="off"
+        ></v-text-field>
+      </div>
+      <div style="opacity: 0; transform: translateX(30px)" class="d-flex align-center gap-2 flex-wrap mt-3">
         <v-btn color="primary" class="text-capitalize" size="small" type="submit" :disabled="isFormProcessing">
           Send
         </v-btn>
@@ -48,7 +52,7 @@
 <script setup>
 import { reactive, onMounted, ref, watch } from 'vue';
 import Card from './Card.vue';
-import { ResetPassword, pathes } from '../lib';
+import { ResetPassword, pathes, wait } from '../lib';
 import { useFocus, useRequest, useRedirect } from '../hooks';
 import { ResetPasswordApi } from '../apis';
 import { useNotification } from '@kyvg/vue3-notification';
@@ -62,7 +66,17 @@ const focus = useFocus();
 const notification = useNotification();
 const isFormProcessing = request.isApiProcessing(ResetPasswordApi);
 
-onMounted(() => {
+onMounted(async () => {
+  await wait(10);
+
+  for (const node of formRef.value.children) {
+    node.style.transition = 'opacity 0.2s, transform 0.3s';
+    node.style.opacity = 1;
+    node.style.transform = 'translateX(0px)';
+
+    await wait();
+  }
+
   focus('password');
 });
 
