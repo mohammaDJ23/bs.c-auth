@@ -14,7 +14,7 @@
 .auth-container {
   width: 100vw;
   height: 100vh;
-  background: #e5e9f2;
+  background: white;
   word-break: break-all;
 }
 </style>

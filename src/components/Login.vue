@@ -1,31 +1,35 @@
 <template>
-  <Card v-if="!isUserLoggedIn" title="User login" :is-loading="isFormProcessing">
+  <Card v-if="!isUserLoggedIn" title="User login" :is-loading="isFormProcessing" :card-style="{ 'box-shadow': 'none' }">
     <v-form ref="formRef" v-model="valid" lazy-validation @submit="validate">
-      <v-text-field
-        clearable
-        :disabled="isFormProcessing"
-        label="Email"
-        variant="underlined"
-        v-model="form.email"
-        :rules="form.getInputRules('email')"
-        type="email"
-        name="email"
-        required
-        @update:model-value="(value) => form.cacheInput('email', value)"
-      ></v-text-field>
-      <v-text-field
-        clearable
-        :disabled="isFormProcessing"
-        label="Password"
-        variant="underlined"
-        v-model="form.password"
-        :rules="form.getInputRules('password')"
-        type="password"
-        name="password"
-        required
-        autocomplete="off"
-      ></v-text-field>
-      <div class="d-flex align-center gap-2 flex-wrap mt-3">
+      <div style="opacity: 0; transform: translateX(10px)">
+        <v-text-field
+          clearable
+          :disabled="isFormProcessing"
+          label="Email"
+          variant="underlined"
+          v-model="form.email"
+          :rules="form.getInputRules('email')"
+          type="email"
+          name="email"
+          required
+          @update:model-value="(value) => form.cacheInput('email', value)"
+        ></v-text-field>
+      </div>
+      <div style="opacity: 0; transform: translateX(20px)">
+        <v-text-field
+          clearable
+          :disabled="isFormProcessing"
+          label="Password"
+          variant="underlined"
+          v-model="form.password"
+          :rules="form.getInputRules('password')"
+          type="password"
+          name="password"
+          required
+          autocomplete="off"
+        ></v-text-field>
+      </div>
+      <div style="opacity: 0; transform: translateX(30px)" class="d-flex align-center gap-2 flex-wrap mt-3">
         <v-btn color="primary" class="text-capitalize" size="small" type="submit" :disabled="isFormProcessing">
           Login
         </v-btn>
@@ -59,7 +63,7 @@
 <script setup>
 import { reactive, onMounted, ref } from 'vue';
 import Card from './Card.vue';
-import { LocalStorage, Login, pathes } from '../lib';
+import { LocalStorage, Login, pathes, wait } from '../lib';
 import { useFocus, useRequest, useRedirect } from '../hooks';
 import { LoginApi, LoginWithGoogleApi } from '../apis';
 import { decodeToken } from 'react-jwt';
@@ -75,7 +79,17 @@ const isLoginApiProcessing = request.isApiProcessing(LoginApi);
 const isFormProcessing = isLoginApiProcessing;
 const isUserLoggedIn = isUserAuthenticated();
 
-onMounted(() => {
+onMounted(async () => {
+  await wait(10);
+
+  for (const node of formRef.value.children) {
+    node.style.transition = 'opacity 0.2s, transform 0.3s';
+    node.style.opacity = 1;
+    node.style.transform = 'translateX(0px)';
+
+    await wait();
+  }
+
   focus('email');
 });
 
