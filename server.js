@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 if (isFileExist('dist')) {
-  app.use('/auth/static', express.static(path.join(__dirname, 'dist')));
+  app.use(process.env.AUTH_PUBLIC_PATH, express.static(path.join(__dirname, 'dist')));
 }
 
 app.get('*', (req, res) => {
